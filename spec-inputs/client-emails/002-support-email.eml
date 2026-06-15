@@ -1,19 +1,20 @@
-From: client2@example.com
-To: ingest@example.local
-Subject: Question about invoice INV-2026-0001
-Date: Mon, 14 Jun 2026 10:12:00 +0000
-Message-ID: <msg-002@example.local>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+**From:** [mary.lee@globalinvest.com](mailto:mary.lee@globalinvest.com)
 
-Hi,
+Hello,
 
-We received invoice INV-2026-0001 but the billed amount appears incorrect.
-Client: Beta LLC
-Invoice: INV-2026-0001
-Amount: USD 1,234.56
+We would like to check the settlement status for the following transaction:
 
-Please advise next steps.
+Security: TSLA US Equity
+ISIN: US88160R1014
+Trade Date: 2026-06-10
+Settlement Date: 2026-06-13
+Quantity: 1,200 shares
+Price: 328.75 USD
+
+According to our records, the trade remains unsettled. Could you please confirm the current status and let us know if there are any issues preventing settlement?
 
 Regards,
-Beta Accounts
+
+Mary Lee
+Trade Support
+Global Invest Ltd.

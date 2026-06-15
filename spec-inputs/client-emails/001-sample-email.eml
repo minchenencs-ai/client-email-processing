@@ -1,20 +1,21 @@
-From: client1@example.com
-To: ingest@example.local
-Subject: New client onboarding
-Date: Mon, 14 Jun 2026 09:00:00 +0000
-Message-ID: <msg-001@example.local>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+**From:** [john.smith@abcasset.com](mailto:john.smith@abcasset.com)
 
-Hello,
+Hi Team,
 
-Please find details for a new client below:
+Could you please confirm whether the following trade has been booked correctly?
 
-Client: Acme Corp
-Contact: Alice Example
-Account Number: ACC-0001
+Security: AAPL US Equity
+CUSIP: 037833100
+Trade Date: 2026-06-11
+Settlement Date: 2026-06-15
+Side: Buy
+Quantity: 5,000 shares
+Price: 212.45 USD
 
-Please set up the account and confirm.
+We are unable to locate the trade on our side and would appreciate it if you could verify the booking status and advise if any action is required.
 
-Thanks,
-Acme Onboarding Team
+Thank you,
+
+John Smith
+Operations Analyst
+ABC Asset Management

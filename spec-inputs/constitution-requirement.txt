@@ -1,14 +1,1 @@
-Constitution requirements for Client Email Processing
-
-- Core Principles:
-  - Library-first: features developed as small, testable libraries.
-  - CLI-first: expose deterministic CLI + JSON I/O for tools.
-  - Test-first: require tests before implementation (unit + integration).
-  - Observability: structured logging and correlation IDs.
-  - Simplicity & Security: minimal designs and least-privilege handling of secrets.
-
-- Governance:
-  - Amendments require written rationale and a migration plan.
-  - Changes must be reviewed in a PR and ratified before adoption.
-
-Target: Use this as the source-of-truth to generate `.specify/memory/constitution.md`.
+Create principles focused on code quality, testing standards, user experience consistency, and performance requirements.
