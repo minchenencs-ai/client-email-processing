@@ -66,6 +66,15 @@ Source: spec-inputs/specify-requirement.txt
 - **ExtractedTrade**: `security_id`, `trade_date`, `settlement_date`, `quantity`, `price`, `account`, `counterparty`, `currency`
 - **ReconciliationResult**: `email_trade_id`, `retrieved_trade_id`, `attribute_results` (map attribute→status), `overall_status`
 
+## Operational Rules
+
+- **Matching rules**: Prefer exact `security_id` matches. If no exact match, attempt normalized/fuzzy matching (normalize to digits/uppercase; allow Levenshtein distance ≤ 2 for identifiers). For numeric fields: `price` tolerance default 0.5% relative; `quantity` requires exact match unless otherwise specified.
+- **Trade system precedence**: When multiple systems return matches, prefer Quest, then Vista FID, then Vista Equity, unless a stronger confidence score is available from another source.
+- **Classification confidence**: Default thresholds — `<0.60` require manual review; `0.60–0.85` show warning and require operator confirmation; `>=0.85` allow auto-suggested responses but still editable.
+- **Quarantine policy**: Emails failing parsing or producing ambiguous extracted entities MUST be moved to the quarantine queue and a structured failure record emitted for operator review.
+
+These defaults can be refined during Phase 0 research; record any deviations in `research.md`.
+
 ## Success Criteria *(mandatory)*
 
 - **SC-001**: Parser extracts `client_name` and primary trade identifiers in ≥80% of provided sample emails.
