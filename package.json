@@ -1,0 +1,20 @@
+{
+  "name": "client-email-processing",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite frontend",
+    "build": "vite build frontend --outDir dist",
+    "preview": "vite preview --root frontend",
+    "start:mock": "node mock-api/server.js",
+    "test": "vitest",
+    "test:watch": "vitest --watch"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
