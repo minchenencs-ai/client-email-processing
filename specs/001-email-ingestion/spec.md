@@ -1,0 +1,69 @@
+# Feature Specification: Email ingestion and structured parsing
+
+**Feature Branch**: `001-email-ingestion`
+
+**Created**: 2026-06-15
+
+**Status**: Draft
+
+**Input**: User description: "Develop AI-Powered Client Email Processing and Trade Reconciliation Application"
+
+Source: spec-inputs/specify-requirement.txt
+
+## User Scenarios & Testing *(mandatory)*
+
+### User Story 1 - Ingest and parse client emails (Priority: P1)
+
+- As an Operations user, I want incoming client emails to be ingested and parsed so the system can extract relevant metadata and trade-related entities for downstream processing.
+
+**Why this priority**: Core capability enabling all downstream steps (classification, trade retrieval, reconciliation, response generation).
+
+**Independent Test**: Provide sample `.eml` files (see `spec-inputs/client-emails/`) and verify the parser outputs structured JSON with required fields.
+
+**Acceptance Scenarios**:
+
+1. **Given** a valid client email, **When** the ingestion runs, **Then** produce a JSON record containing `subject`, `sender`, `sent_timestamp`, `email_body`, and extracted entities (security ids, dates, quantity, price, account, counterparty).
+2. **Given** an email with unparseable content, **When** ingestion runs, **Then** quarantine the email and emit a structured failure record.
+
+---
+
+### User Story 2 - Provide human review and response editing (Priority: P2)
+
+- As an Operations user, I want to review AI-extracted results and edit generated responses before sending to clients.
+
+**Independent Test**: Verify UI allows editing generated response, approving or escalating.
+
+## Edge Cases
+
+- Emails with multiple trade records (process each trade separately).
+- Partial matches from trade retrieval systems (flag as partial mismatch).
+- Missing identifiers (attempt best-effort fuzzy match, otherwise mark missing).
+
+## Requirements *(mandatory)*
+
+### Functional Requirements
+
+- **FR-001**: System MUST ingest raw client emails (.eml) and persist raw metadata (subject, sender, sent timestamp) and body.
+- **FR-002**: System MUST extract trade-related entities: security identifiers (CUSIP/ISIN/SEDOL), trade date, settlement date, quantity, price, counterparty, account, currency.
+- **FR-003**: System MUST classify email intent into one of: Booking, Settlement, General.
+- **FR-004**: System MUST query external trading systems (Quest, Vista FID, Vista Equity) to retrieve matching trades using extracted identifiers and dates.
+- **FR-005**: System MUST compute attribute-level reconciliation results (match / partial / missing) for each trade attribute listed in the spec.
+- **FR-006**: System MUST generate a draft response email summarizing findings, discrepancies, and recommended actions; users MUST be able to edit before sending.
+- **FR-007**: Unparseable emails or failures in extraction MUST be quarantined; failures MUST be logged as structured events.
+
+### Key Entities
+
+- **EmailRecord**: `id`, `subject`, `sender`, `sent_timestamp`, `body`, `raw_payload`
+- **ExtractedTrade**: `security_id`, `trade_date`, `settlement_date`, `quantity`, `price`, `account`, `counterparty`, `currency`
+- **ReconciliationResult**: `email_trade_id`, `retrieved_trade_id`, `attribute_results` (map attribute→status), `overall_status`
+
+## Success Criteria *(mandatory)*
+
+- **SC-001**: Parser extracts `client_name` and primary trade identifiers in ≥80% of provided sample emails.
+- **SC-002**: Reconciliation produces attribute-level comparisons for ≥90% of ingested trades in test dataset.
+- **SC-003**: Users can review and edit generated responses in the UI; 95% of reviewed responses are editable and sendable without system errors.
+
+## Assumptions
+
+- Sample inputs live under `spec-inputs/client-emails/` for development and testing.
+- Access to trade systems (Quest, Vista FID, Vista Equity) will be provided via integration stubs or test APIs during development.
