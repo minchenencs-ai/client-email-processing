@@ -1,0 +1,197 @@
+# Title
+
+Develop AI-Powered Client Email Processing and Trade Reconciliation Application
+
+# User Story
+
+As an Operations user,
+
+I want a web application that automates client email processing, trade retrieval, reconciliation, and response generation while providing visibility into each processing stage,
+
+So that client inquiries can be handled efficiently and users can review and validate AI-generated results before responding to clients.
+
+# Description
+
+Develop an end-to-end application consisting of AI processing services and a user interface to support the automated handling of client inquiries.
+
+The application shall provide visibility into each processing step and enable users to review intermediate and final results.
+
+## Email Ingestion
+
+Capture the following information from incoming client emails:
+
+* Subject
+* Sender
+* Sent timestamp
+* Email body
+
+## AI Intent Classification
+
+Analyze email content and classify inquiries into one of the following categories:
+
+* Booking
+* Settlement
+* General
+
+## Trade Information Extraction
+
+Extract trade-related attributes, including:
+
+* Security identifiers (CUSIP, ISIN, SEDOL, etc.)
+* Trade date
+* Settlement date
+* Quantity
+* Price
+* Counterparty
+* Account
+* Currency
+
+## Trade Retrieval
+
+Query the following trading systems using the extracted information:
+
+* Quest
+* Vista FID
+* Vista Equity
+
+Retrieve matching trades based on security identifiers, trade date, and settlement date.
+
+## Trade Reconciliation
+
+Compare email-extracted attributes against trade records returned from the trading systems.
+
+Generate attribute-level matching results for:
+
+* Security ID
+* Trade date
+* Settlement date
+* Quantity
+* Price
+* Account
+* Counterparty
+* Currency
+* Trade status
+
+Identify:
+
+* Full matches
+* Partial mismatches
+* Missing trades
+
+## AI Response Generation
+
+Generate a draft response email containing:
+
+* Client query summary
+* Reconciliation results
+* Identified discrepancies
+* Recommended action steps
+* Escalation instructions when manual intervention is required
+
+# User Interface
+
+Develop a UI/dashboard that visualizes each stage of the workflow.
+
+## Step 1 – Email Details
+
+Display:
+
+* Subject
+* Sender
+* Sent time
+* Email body
+
+## Step 2 – Intent Classification
+
+Display:
+
+* Predicted category
+* Confidence score
+
+## Step 3 – Trade Information Extraction
+
+Display extracted entities and values.
+
+## Step 4 – Trade Retrieval
+
+Display trades returned from:
+
+* Quest
+* Vista FID
+* Vista Equity
+
+## Step 5 – Trade Reconciliation
+
+Display comparison tables showing the match status of each trade attribute.
+
+Highlight:
+
+* Matched fields
+* Mismatched fields
+* Missing values
+
+## Step 6 – Generated Response
+
+Display:
+
+* AI-generated response email
+* Recommended actions
+* Confidence score
+
+Allow users to edit the response before sending.
+
+## Step 7 – Human Review
+
+Provide functionality to:
+
+* Approve the response
+* Modify the response
+* Escalate the case
+* Record review decisions
+
+# Acceptance Criteria
+
+### AC1 – Email Processing
+
+The application shall ingest and display email metadata and content.
+
+### AC2 – Intent Classification
+
+The application shall classify inquiries into Booking, Settlement, or General categories.
+
+### AC3 – Trade Information Extraction
+
+The application shall extract trade attributes from client emails.
+
+### AC4 – Trading System Integration
+
+The application shall query Quest, Vista FID, and Vista Equity using extracted information.
+
+### AC5 – Trade Reconciliation
+
+The application shall generate comparison tables showing attribute-level matching status.
+
+### AC6 – AI Response Generation
+
+The application shall generate a draft response email and recommended actions.
+
+### AC7 – Workflow Visualization
+
+The UI shall provide visibility into each processing step and intermediate results.
+
+### AC8 – Human-in-the-Loop Review
+
+Users shall be able to review, edit, approve, or escalate AI-generated responses.
+
+# Dependencies
+
+* Email ingestion service
+* AI intent classification service
+* Entity extraction service
+* Quest integration
+* Vista FID integration
+* Vista Equity integration
+* Reconciliation engine
+* LLM response generation service
+* UI framework
+* Authentication and audit logging

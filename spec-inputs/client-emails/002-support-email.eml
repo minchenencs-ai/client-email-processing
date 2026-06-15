@@ -1,0 +1,19 @@
+From: client2@example.com
+To: ingest@example.local
+Subject: Question about invoice INV-2026-0001
+Date: Mon, 14 Jun 2026 10:12:00 +0000
+Message-ID: <msg-002@example.local>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+
+Hi,
+
+We received invoice INV-2026-0001 but the billed amount appears incorrect.
+Client: Beta LLC
+Invoice: INV-2026-0001
+Amount: USD 1,234.56
+
+Please advise next steps.
+
+Regards,
+Beta Accounts
