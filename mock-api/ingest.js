@@ -3,6 +3,7 @@ const path = require('path')
 const intentClassifier = require('./intentClassifier')
 const modelClient = require('./modelClient')
 const quarantine = require('./quarantine')
+const logger = require('./logger')
 const tradeSearch = require('./tradeSearchClient')
 const reconciliation = require('./reconciliation')
 
@@ -43,12 +44,14 @@ async function processEmail(email) {
   if (classification.confidence < 0.6) {
     quarantine.record({ source: 'ingest:classifier', email, classification, ts: new Date().toISOString() })
     result.overall_status = 'quarantined'
+    logger.info({ event: 'ingest.quarantined', reason: 'low_classification_confidence', email_id: result.email_trade_id, confidence: classification.confidence })
     return result
   }
 
   if (!extracted.security_id || !extracted.quantity) {
     quarantine.record({ source: 'ingest:parser', email, extracted, ts: new Date().toISOString() })
     result.overall_status = 'quarantined'
+    logger.info({ event: 'ingest.quarantined', reason: 'missing_extracted_fields', email_id: result.email_trade_id, extracted })
     return result
   }
 
@@ -56,6 +59,7 @@ async function processEmail(email) {
   const chosen = trades[0]
   if (!chosen) {
     result.overall_status = 'unmatched'
+    logger.info({ event: 'ingest.unmatched', email_id: result.email_trade_id, extracted })
     return result
   }
 
@@ -63,6 +67,7 @@ async function processEmail(email) {
   const recon = reconciliation.reconcile(extracted, chosen)
   result.attribute_results = recon.attribute_results
   result.overall_status = recon.overall_status
+  logger.info({ event: 'ingest.result', email_id: result.email_trade_id, retrieved_trade_id: result.retrieved_trade_id, overall_status: result.overall_status })
 
   return result
 }

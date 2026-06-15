@@ -60,6 +60,26 @@ function handler(req, res) {
     return sendJSON(res, { trades: [] })
   }
 
+  if (parsed.pathname === '/api/samples' && method === 'GET') {
+    // Return list of sample emails from spec-inputs/client-emails
+    try {
+      const samplesDir = path.join(__dirname, '..', 'spec-inputs', 'client-emails')
+      if (!fs.existsSync(samplesDir)) return sendJSON(res, { samples: [] })
+      const files = fs.readdirSync(samplesDir).filter(f => f.endsWith('.eml') || f.endsWith('.txt'))
+      const items = files.map(f => {
+        const p = path.join(samplesDir, f)
+        const content = fs.readFileSync(p, 'utf8')
+        // Simple heuristic: first line as subject if contains 'Subject:'
+        const subjectMatch = content.split(/\r?\n/).find(l => /^Subject:/i.test(l)) || ''
+        const subject = subjectMatch ? subjectMatch.replace(/^Subject:\s*/i, '').trim() : f
+        return { id: f, filename: f, subject, body: content }
+      })
+      return sendJSON(res, { samples: items })
+    } catch (err) {
+      return sendJSON(res, { error: String(err) }, 500)
+    }
+  }
+
   if (parsed.pathname === '/api/classify' && method === 'POST') {
     return parseJSONBody(req)
       .then(async body => {
