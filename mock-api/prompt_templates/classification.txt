@@ -1,0 +1,4 @@
+Classify the user's email into one of: Booking, Settlement, General, Support, Amendment, Unknown.
+Provide JSON output with fields: intent, confidence.
+
+INPUT: {{INPUT}}

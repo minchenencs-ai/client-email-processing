@@ -92,6 +92,10 @@
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
+ - **FR-006**: If the feature includes client-intent classification or trade-extraction,
+   the implementation MUST be prompt-based and model-driven (rule- or heuristic-based
+   approaches are NOT permitted). Document the model selection, prompt design, and
+   evaluation criteria in the spec.
 
 *Example of marking unclear requirements:*
 

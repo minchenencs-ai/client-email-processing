@@ -1,0 +1,33 @@
+{
+  "summary": "Trade search contract for mock API",
+  "description": "Defines the /api/trades contract used by the prototype mock API.",
+  "request": {
+    "method": "GET",
+    "path": "/api/trades",
+    "query": {
+      "securityId": "string (optional)",
+      "tradeDate": "YYYY-MM-DD (optional)",
+      "settlementDate": "YYYY-MM-DD (optional)",
+      "limit": "integer (optional)"
+    }
+  },
+  "response_example": {
+    "trades": [
+      {
+        "id": "trade-123",
+        "trade_id": "T-0001",
+        "security_id": "ABCD",
+        "trade_date": "2026-06-10",
+        "settlement_date": "2026-06-12",
+        "quantity": 100,
+        "price": 12.34,
+        "account": "ACC-01",
+        "counterparty": "CP-01",
+        "currency": "USD",
+        "source": "Quest",
+        "confidence": 0.98
+      }
+    ]
+  },
+  "notes": "The prototype mock API reads data from spec-inputs/api-trade-search-db.json. Implementations may vary by provider; this contract is intentionally simple to mirror local mock behavior."
+}

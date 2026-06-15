@@ -16,6 +16,7 @@ Source: spec-inputs/specify-requirement.txt
 ### Session 2026-06-15
 
 - Q: Access control model for human-in-the-loop review → A: Option B — Shared ops account: single shared account for operations (no per-user auditing).
+ - Q: Automation thresholds for auto-suggestion vs review vs manual for classification and extraction → A: Option C — Aggressive automation: classification auto-suggest at >= 0.75; review band 0.60–0.75; manual below 0.60. Extraction field-level auto-suggest at F1 >= 0.80.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -60,6 +61,8 @@ Source: spec-inputs/specify-requirement.txt
 - **FR-006**: System MUST generate a draft response email summarizing findings, discrepancies, and recommended actions; users MUST be able to edit before sending.
 - **FR-007**: Unparseable emails or failures in extraction MUST be quarantined; failures MUST be logged as structured events.
 
+- **FR-009**: All client-intent classification and trade-extraction implementations MUST be prompt-based and model-driven; rule- or heuristic-based approaches are not permitted. The spec MUST document the chosen model(s), prompt templates, and evaluation criteria.
+
 ### Key Entities
 
 - **EmailRecord**: `id`, `subject`, `sender`, `sent_timestamp`, `body`, `raw_payload`
@@ -74,6 +77,18 @@ Source: spec-inputs/specify-requirement.txt
 - **Quarantine policy**: Emails failing parsing or producing ambiguous extracted entities MUST be moved to the quarantine queue and a structured failure record emitted for operator review.
 
 These defaults can be refined during Phase 0 research; record any deviations in `research.md`.
+
+## Modeling & Prompting (mandatory)
+
+- Model selection and prompts: For classification and extraction, the spec MUST list the model(s) considered, the chosen model, and include canonical prompt templates used for inference and testing.
+- Evaluation: The spec MUST provide evaluation datasets and measurable metrics (precision, recall, F1, calibration) and define thresholds that determine auto-suggestion vs manual review.
+- Reproducibility: Prompt examples, input fixtures, and evaluation scripts MUST be checked into the feature docs (e.g., `research.md` or `data-model.md`) so CI can reproduce evaluation runs.
+
+- Automation thresholds (chosen): This feature will follow the selected "Aggressive automation" posture:
+	- Classification: auto-suggest when model confidence >= 0.75; show reviewer warning and require operator confirmation for confidence in [0.60, 0.75); require manual review for confidence < 0.60.
+	- Extraction: field-level auto-suggestion allowed when evaluated field F1 >= 0.80. Fields below this threshold must be surfaced for human review (implementation may define a review band, e.g., 0.70–0.80).
+
+	The evaluation section MUST include scripts and datasets to compute these metrics per-field so CI can flag regressions.
 
 ## Success Criteria *(mandatory)*
 

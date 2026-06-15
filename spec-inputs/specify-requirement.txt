@@ -92,6 +92,17 @@ Generate a draft response email containing:
 
 Develop a UI/dashboard that visualizes each stage of the workflow.
 
+## Display
+
+List of UI elements to display (consolidated from Steps 1–6):
+
+- Step 1 — Email Details: Subject, Sender, Sent time, Email body
+- Step 2 — Intent Classification: Predicted category, Confidence score
+- Step 3 — Trade Information Extraction: Extracted entities and values (Security identifiers — CUSIP/ISIN/SEDOL, Trade date, Settlement date, Quantity, Price, Counterparty, Account, Currency)
+- Step 4 — Trade Retrieval: Matching trades returned from Quest, Vista FID, Vista Equity (show trade id, security id, trade date, settlement date, quantity, price, account, counterparty, source system, confidence)
+- Step 5 — Trade Reconciliation: Attribute-level comparison table showing per-attribute status (Matched / Partial / Missing), highlight mismatches and missing values, and overall reconciliation status
+- Step 6 — Generated Response: AI-generated response email (editable draft), Recommended actions, Confidence score, Escalation instructions
+
 ## Step 1 – Email Details
 
 Display:
@@ -138,16 +149,7 @@ Display:
 * Recommended actions
 * Confidence score
 
-Allow users to edit the response before sending.
 
-## Step 7 – Human Review
-
-Provide functionality to:
-
-* Approve the response
-* Modify the response
-* Escalate the case
-* Record review decisions
 
 # Acceptance Criteria
 
@@ -179,9 +181,6 @@ The application shall generate a draft response email and recommended actions.
 
 The UI shall provide visibility into each processing step and intermediate results.
 
-### AC8 – Human-in-the-Loop Review
-
-Users shall be able to review, edit, approve, or escalate AI-generated responses.
 
 # Dependencies
 
@@ -194,4 +193,3 @@ Users shall be able to review, edit, approve, or escalate AI-generated responses
 * Reconciliation engine
 * LLM response generation service
 * UI framework
-* Authentication and audit logging

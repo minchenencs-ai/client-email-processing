@@ -38,9 +38,15 @@
 
 ## Constitution Check
 
+## Constitution Check
+
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- For features involving client-intent classification or trade-extraction, confirm the approach is
+  prompt-based and model-driven; rule- or heuristic-based solutions are disallowed. The plan MUST
+  document model selection, prompt strategy, and evaluation criteria.
+- Confirm the plan includes code quality, testing, UX consistency, and performance goals per the
+  constitution's `Quality, Testing, UX & Performance` principle.
 
 ## Project Structure
 

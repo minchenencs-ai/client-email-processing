@@ -157,6 +157,7 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
+ - [ ] TXXX Implement classification/trade-extraction via prompt-based, model-driven approach; include model evaluation tests and performance benchmarks. (Constitution gate)
 
 ---
 

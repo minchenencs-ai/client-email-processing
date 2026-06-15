@@ -1,1 +1,3 @@
 Create principles focused on code quality, testing standards, user experience consistency, and performance requirements.
+
+Requirement: All client-intent classification and trade-extraction shall be implemented exclusively via prompt-based, model-driven (non-rule-based) methods; rule- or heuristic-based approaches are not permitted.

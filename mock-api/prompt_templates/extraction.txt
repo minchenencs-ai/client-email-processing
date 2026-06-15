@@ -1,0 +1,3 @@
+Extract trade-related fields from the following email. Return JSON with keys: security_id, trade_date, settlement_date, quantity, price, counterparty, account, currency.
+
+INPUT: {{INPUT}}

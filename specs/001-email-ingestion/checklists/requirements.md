@@ -33,6 +33,8 @@
 
 - Access control model: Shared operations account (no per-user auditing) — recorded in spec.md under Clarifications
 
+- Automation thresholds: Classification auto-suggest >= 0.75; review 0.60–0.75; manual < 0.60. Extraction field-level auto-suggest F1 >= 0.80. — recorded in spec.md under Clarifications
+
 ## Notes
 
 - Items marked incomplete require spec updates before `/speckit.plan` or `/speckit.clarify`
