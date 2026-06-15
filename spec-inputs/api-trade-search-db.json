@@ -1,0 +1,91 @@
+{
+  "trade_search_transactions": [
+    {
+      "api_calls": [
+        {
+          "source_system": "Quest",
+          "request": {
+            "security_id": "037833100",
+            "trade_date": "2026-06-11",
+            "settlement_date": "2026-06-15"
+          },
+          "response": {
+            "status": "NO_MATCH",
+            "trades": []
+          }
+        },
+        {
+          "source_system": "Vista Equity",
+          "request": {
+            "security_id": "037833100",
+            "trade_date": "2026-06-11",
+            "settlement_date": "2026-06-15"
+          },
+          "response": {
+            "status": "SUCCESS",
+            "trades": [
+              {
+                "trade_id": "VEQ-987654",
+                "security_id": "037833100",
+                "ticker": "AAPL",
+                "trade_date": "2026-06-11",
+                "settlement_date": "2026-06-15",
+                "side": "BUY",
+                "quantity": 5000,
+                "price": 212.40,
+                "currency": "USD",
+                "counterparty": "ABC Asset Management",
+                "account": "EQ-1001",
+                "trade_status": "BOOKED"
+              }
+            ]
+          }
+        }
+      ]
+    },
+
+    {
+      "api_calls": [
+        {
+          "source_system": "Quest",
+          "request": {
+            "security_id": "US88160R1014",
+            "trade_date": "2026-06-10",
+            "settlement_date": "2026-06-13"
+          },
+          "response": {
+            "status": "NO_MATCH",
+            "trades": []
+          }
+        },
+        {
+          "source_system": "Vista FID",
+          "request": {
+            "security_id": "US88160R1014",
+            "trade_date": "2026-06-10",
+            "settlement_date": "2026-06-13"
+          },
+          "response": {
+            "status": "SUCCESS",
+            "trades": [
+              {
+                "trade_id": "FID-442110",
+                "security_id": "US88160R1014",
+                "ticker": "TSLA",
+                "trade_date": "2026-06-10",
+                "settlement_date": "2026-06-13",
+                "side": "SELL",
+                "quantity": 1200,
+                "price": 328.75,
+                "currency": "USD",
+                "counterparty": "Global Invest Ltd.",
+                "account": "FID-7788",
+                "trade_status": "PENDING_SETTLEMENT"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

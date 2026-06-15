@@ -29,6 +29,10 @@
 - [ ] Feature meets measurable outcomes defined in Success Criteria
 - [ ] No implementation details leak into specification
 
+## Clarifications
+
+- Access control model: Shared operations account (no per-user auditing) — recorded in spec.md under Clarifications
+
 ## Notes
 
 - Items marked incomplete require spec updates before `/speckit.plan` or `/speckit.clarify`

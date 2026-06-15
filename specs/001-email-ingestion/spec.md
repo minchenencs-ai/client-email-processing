@@ -8,7 +8,14 @@
 
 **Input**: User description: "Develop AI-Powered Client Email Processing and Trade Reconciliation Application"
 
+
 Source: spec-inputs/specify-requirement.txt
+
+## Clarifications
+
+### Session 2026-06-15
+
+- Q: Access control model for human-in-the-loop review → A: Option B — Shared ops account: single shared account for operations (no per-user auditing).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -32,6 +39,8 @@ Source: spec-inputs/specify-requirement.txt
 - As an Operations user, I want to review AI-extracted results and edit generated responses before sending to clients.
 
 **Independent Test**: Verify UI allows editing generated response, approving or escalating.
+
+**FR-008**: Access control MAY use a shared operations account without per-user auditing, unless the project later requires role-based auditing.
 
 ## Edge Cases
 

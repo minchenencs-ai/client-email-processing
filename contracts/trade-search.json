@@ -1,0 +1,35 @@
+{
+  "name": "trade-search",
+  "path": "/api/trades",
+  "method": "GET",
+  "queryParameters": [
+    {"name": "securityId", "type": "string", "required": false, "description": "CUSIP/ISIN/SEDOL or other security identifier"},
+    {"name": "tradeDate", "type": "string", "format": "date", "required": false, "description": "Trade date (YYYY-MM-DD)"},
+    {"name": "settlementDate", "type": "string", "format": "date", "required": false, "description": "Settlement date (YYYY-MM-DD)"},
+    {"name": "account", "type": "string", "required": false, "description": "Account identifier"}
+  ],
+  "response": {
+    "200": {
+      "description": "Array of trade records matching the query",
+      "body": {
+        "type": "array",
+        "items": {
+          "trade_id": "string",
+          "security_id": "string",
+          "trade_date": "string",
+          "settlement_date": "string",
+          "quantity": "number",
+          "price": "number",
+          "account": "string",
+          "counterparty": "string",
+          "currency": "string",
+          "status": "string"
+        }
+      }
+    },
+    "404": {
+      "description": "No trades found",
+      "body": {"type": "object", "properties": {"message": "string"}}
+    }
+  }
+}
